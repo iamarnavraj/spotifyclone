@@ -31,6 +31,8 @@ body{
 
 .right {
     width: 75vw;
+    margin: 10px 6px;
+    position: relative;
 }
 
 .home ul li {
@@ -81,11 +83,6 @@ body{
 .footer a{
     color: grey;
     text-decoration: none;
-}
-
-.right {
-    margin: 10px 6px;
-    position: relative;
 }
 
 .header {
