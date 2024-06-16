@@ -65,6 +65,19 @@ body{
     width: 30px;
 }
 
+.songList ul{
+    padding: 0 55px;
+    font-size: 12px;
+}
+
+.songList ul li{
+    list-style-type: none;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    padding: 12px 0;
+}
+
 .footer {
     display: flex;
     font-size: 10px;
