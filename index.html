@@ -30,11 +30,6 @@
                 </div>
                 <div class="songList">
                     <ul>
-                        <li>
-                            <img class = "invert" src="music.svg">
-                            <div>Song Name</div>
-                            <div>Song Artist</div>
-                        </li>
                     </ul>
                 </div>
                 <div class="footer">
@@ -141,13 +136,18 @@
                     </div>                    
                 </div>
                 <div class="playbar bg-grey">
-                    <div class="songinfo"></div>
-                    <div class="songplaybuttons">
-                        <img src = "prevsong.svg">
-                        <img src = "pla.svg">
-                        <img src = "nextsong.svg">
+                    <div class="abovebar">
+                        <div class="songinfo"></div>
+                        <div class="songplaybuttons">
+                            <img id = "previous" src = "prevsong.svg">
+                            <img id = "play" src = "pla.svg">
+                            <img id = "next" src = "nextsong.svg">
+                        </div>
+                        <div class="seekbar">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="songtime"></div>
                     </div>
-                    <div class="songtime"></div>
                 </div>
             </div>
         </div>

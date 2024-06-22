@@ -1,4 +1,20 @@
+::-webkit-scrollbar {
+    width: 12px;
+}
 
+::-webkit-scrollbar-track {
+    background: #000000; 
+    /* border-radius: 10px;  */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #252424; 
+    /* border-radius: 10px;  */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
 
 .reddit-sans {
   font-family: "Reddit Sans", sans-serif;
@@ -65,17 +81,43 @@ body{
     width: 30px;
 }
 
+.songList {
+    height: 300px;
+    overflow: auto;
+}
+
+.songList ul li:hover {
+    transform: scale(1.1);
+    transition: all 0.1s ease;
+}
+
 .songList ul{
-    padding: 0 55px;
+    padding: 0 25px;
     font-size: 12px;
+}
+
+.songList .info {
+    width: 300px;
 }
 
 .songList ul li{
     list-style-type: none;
     display: flex;
+    justify-content: space-between;
     gap: 12px;
     cursor: pointer;
     padding: 12px 0;
+    border: 1px solid white;
+    margin: 3px 0 0;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.playnow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 40px;
 }
 
 .footer {
@@ -138,7 +180,7 @@ body{
 }
 
 .card img {
-    width: 150px;
+    width: 140px;
     border-radius: 5px;
     padding: 4px;
 }
@@ -163,8 +205,8 @@ body{
     height: 28px;
     display: flex;
     position: absolute;
-    top: 115px;
-    right: 2px;
+    top: 109px;
+    right: 7px;
     opacity: 1;
     transition: all 1s ease-out;
 }
@@ -204,17 +246,57 @@ body{
 .playbar {
     position: absolute;
     bottom: 0;
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 95%;
     padding: 12px;
+}
+
+.seekbar {
+    height: 2px;
+    background-color: white;
+    width: 98%;
+    position: absolute;
+    bottom: 14px;
+}
+
+.circle {
+    height: 10px;
+    width: 10px;
+    border-radius: 13px;
+    background-color: white;
+    position: relative;
+    bottom: 4px;
+    left: 0%;
+    transition: all 0.5s;
+}
+
+.circle:hover {
+    cursor: pointer;
+}
+
+.abovebar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.songinfo {
+    position: relative;
+    bottom: 11px;
 }
 
 .songplaybuttons {
     display: flex;
     gap: 12px;
     justify-content: center;
+    position: relative;
+    bottom: 15px;
 }
 
 .songplaybuttons img:hover{
     cursor: pointer;
+}
+
+.songtime {
+    position: relative;
+    bottom: 11px;
 }
