@@ -1,17 +1,25 @@
 // console.log("js")
 let currentSong = new Audio()
+let songs;
 
 
 function convertSecondsToMinutes(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
 
-    // Format minutes and seconds to always be two digits
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
-
-    // Return the formatted time
-    return `${formattedMinutes}:${formattedSeconds}`;
+    if (isNaN(seconds) || (seconds < 0)) {
+        return "00:00"
+    }
+    const totalSeconds = Math.floor(seconds);
+    
+    // Calculate minutes and remaining seconds
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+    
+    // Pad with zeroes if necessary
+    const paddedMinutes = String(minutes).padStart(2, '0');
+    const paddedSeconds = String(remainingSeconds).padStart(2, '0');
+    
+    // Return the formatted time string
+    return `${paddedMinutes}:${paddedSeconds}`;
 }
 
 async function getSongs(){
@@ -32,19 +40,25 @@ async function getSongs(){
     return songs
 }
 
-const playMusic = (track) => {
+const playMusic = (track, pause=false) => {
     // let audio = new Audio("/songs/" + track)
     currentSong.src = "/songs/" + track
     currentSong.play()
-    play.src = "pause.svg"
+    if (!pause){
+        currentSong.play()
+        play.src = "pause.svg"
+    }
+    // play.src = "pause.svg"
 
-    document.querySelector(".songinfo").innerHTML = track
+    document.querySelector(".songinfo").innerHTML = decodeURI(track)
     document.querySelector(".songtime").innerHTML = ("00:00 / 00:00")
 }
 
 async function main(){
-    let songs = await getSongs()
+    songs = await getSongs()
     // console.log(songs)
+    currentSong.src = songs[0]
+    playMusic(songs[0], true)
 
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     for (const song of songs) {
@@ -90,6 +104,37 @@ async function main(){
     currentSong.addEventListener("timeupdate", ()=>{
         console.log(currentSong.currentTime, currentSong.duration)
         document.querySelector(".songtime").innerHTML = `${convertSecondsToMinutes(currentSong.currentTime)}/${convertSecondsToMinutes(currentSong.duration)}`
+        document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%"
+    })
+
+    document.querySelector(".seekbar").addEventListener("click", e =>{
+        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
+        document.querySelector(".circle").style.left = percent + "%"
+        currentSong.currentTime = ((currentSong.duration) * percent) / 100
+    })
+
+    document.querySelector(".hamburger").addEventListener("click", e => {
+        document.querySelector(".left").style.left = "0"
+    })
+
+    document.querySelector(".cross").addEventListener("click", e => {
+        document.querySelector(".left").style.left = "-100%"
+    })
+
+    previous.addEventListener("click", () => {
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+
+        if ((index - 1) >= 0){
+            playMusic(songs[index - 1])
+        }
+    })
+
+    next.addEventListener("click", () => {
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+
+        if ((index + 1) < songs.length) {
+            playMusic(songs[index + 1])
+        }
     })
     
 }

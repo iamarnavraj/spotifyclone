@@ -16,6 +16,10 @@
     background-color: #555; 
 }
 
+:root {
+    --a: 0;
+}
+
 .reddit-sans {
   font-family: "Reddit Sans", sans-serif;
   font-optical-sizing: auto;
@@ -66,6 +70,10 @@ body{
 .homecontainer:hover {
     cursor: pointer;
     background-color: #424242;
+}
+
+.cross {
+    display: none;
 }
 
 .heading {
@@ -148,6 +156,9 @@ body{
 
 .header .nav {
     cursor: pointer;
+    position: relative;
+    right: -4px;
+    gap: 10px;
 }
 
 .header > * {
@@ -165,12 +176,16 @@ body{
     gap: 20px;
     max-width: 850px;
     flex-wrap: wrap;
+    overflow: auto;
+    z-index: 0;
 }
 
 .card:hover {
     transform: scale(1.1);
     background-color: #252525;
     cursor: pointer;
+    --a: 1;
+    transition: all 0.2s ease;
 }
 
 .card {
@@ -207,8 +222,13 @@ body{
     position: absolute;
     top: 109px;
     right: 7px;
-    opacity: 1;
-    transition: all 1s ease-out;
+    opacity: var(--a);
+    transition: all 0.2s ease-out;
+}
+
+.buttons {
+    position: absolute;
+    right: 40px;
 }
 
 .buttons button{
@@ -245,10 +265,12 @@ body{
 
 .playbar {
     position: absolute;
-    bottom: 0;
-    /* background-color: aqua; */
-    width: 95%;
+    bottom: 13px;
+    background-color: aqua;
+    height: 30px;
+    width: 92%;
     padding: 12px;
+    z-index: 1;
 }
 
 .seekbar {
@@ -257,6 +279,7 @@ body{
     width: 98%;
     position: absolute;
     bottom: 14px;
+    cursor: pointer;
 }
 
 .circle {
@@ -268,9 +291,6 @@ body{
     bottom: 4px;
     left: 0%;
     transition: all 0.5s;
-}
-
-.circle:hover {
     cursor: pointer;
 }
 
@@ -299,4 +319,91 @@ body{
 .songtime {
     position: relative;
     bottom: 11px;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+
+    .container {
+        height: 100%;
+    }
+
+    .cross {
+        display: block;
+        position: absolute;
+        right: 16px;
+    }
+
+    .left{
+        background: black;
+        position: absolute;
+        left: -100%;
+        transition: all 0.3s ease;
+        z-index: 2;
+        width: 300px;
+    }
+
+    .right {
+        width: 100vw;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .playbar {
+        bottom: 0;
+    }
+
+    /* .header .nav {
+        position: absolute;
+        left: 40px;
+    } */
+}
+
+@media (max-width: 450px) {
+    .container {
+        height: 800px;
+    }
+
+    .songinfo {
+        font-size: 14px;
+    }
+
+    .songtime {
+        font-size: 12px;
+        position: relative;
+        right: -23px;
+    }
+
+    .playbar {
+        position: relative;
+        width: 80%;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .cardContainer {
+        justify-content: center;
+    }
+
+    .left {
+        height: 100%;
+    }
+
+    .right {
+        height: 140%;
+        background-color: #121212;
+    }
+
+    .card {
+        width: auto;
+    }
+}
+
+@media (min-height: 600px) {
+
 }
